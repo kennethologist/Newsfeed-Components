@@ -101,7 +101,6 @@ const data = [
   }
 ];
 
-
 function articleMaker(article) {
   const articleDiv = document.createElement('div');
   const articleTitle = document.createElement('h2');
