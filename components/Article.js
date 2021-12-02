@@ -86,9 +86,60 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Javascript Rocks!',
+    date: 'Jan 1st, 2021',
+    firstParagraph: `Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! 
+          Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks! Javascripts rocks!  `,
+
+    secondParagraph: `Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! 
+          Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! Javascript can kick rocks! `,
+
+    thirdParagraph: `Writing Javascript is like Rock n Roll. Writing Javascript is like Rock n Roll. Writing Javascript is like Rock n Roll. Writing Javascript is like Rock n Roll. 
+        Writing Javascript is like Rock n Roll. Writing Javascript is like Rock n Roll. Writing Javascript is like Rock n Roll. `
   }
 ];
 
+
+function articleMaker(article) {
+  const articleDiv = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+
+  articleDiv.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  expandButton.textContent = '+';
+
+  articleTitle.textContent = article.title;
+  articleDate.textContent = article.date;
+  articleDiv.append(articleTitle);
+  articleDiv.append(articleDate);
+
+  firstParagraph.textContent = article.firstParagraph;
+  articleDiv.append(firstParagraph);
+
+  secondParagraph.textContent = article.secondParagraph;
+  articleDiv.append(secondParagraph);
+
+  thirdParagraph.textContent = article.thirdParagraph;
+  articleDiv.append(thirdParagraph);
+
+  expandButton.addEventListener('click', function() {
+    articleDiv.classList.toggle('article-open');
+  })
+
+  articleDiv.append(expandButton);
+
+  return articleDiv;
+}
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
@@ -114,3 +165,9 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articlesDiv = document.querySelector('.articles');
+
+data.forEach(element => {
+  articlesDiv.prepend(articleMaker(element));
+})
